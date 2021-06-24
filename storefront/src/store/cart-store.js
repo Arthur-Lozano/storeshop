@@ -1,9 +1,9 @@
 // Initial State
 const initialState = [
-  { name: "Apples", role: "" },
-  { name: "Calzones", role: "" },
-  { name: "Burgers", role: "" },
-  { name: "Pizza", role: "" },
+  { name: "Apples", inStock: "", price: "", category: "", image: "" },
+  { name: "Calzones", inStock: "", price: "", category: "", image: "" },
+  { name: "Burgers", inStock: "", price: "", category: "", image: "" },
+  { name: "Pizza", inStock: "", price: "", category: "", image: "" },
 ]
 
 

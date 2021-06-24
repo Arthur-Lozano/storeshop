@@ -7,6 +7,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useSelector } from 'react-redux';
+import { Grid } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -22,37 +24,42 @@ const useStyles = makeStyles({
 });
 
 function Electronic(props) {
-
+  const items = useSelector((state) => state.product);
   const classes = useStyles();
 
-  console.log(props.product)
 
+  console.log(items)
   return (
-    <Card className={classes.root}>
-      <CardActionArea className={classes.keyboard}>
-        <CardMedia
-          className={classes.media}
-          image={`https://source.unsplash.com/random?${props.person.role}`}
-          title="Teacher"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.product}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {/* Insert Product comment */}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Add Cart
-        </Button>
-        <Button size="small" color="primary">
-          View Details
-        </Button>
-      </CardActions>
-    </Card>
+    <Grid container>
+      {
+        items && items.map(item =>
+          <Grid item md={4}>
+            <Card className={classes.root}>
+              <CardActionArea className={classes.keyboard}>
+                <CardMedia
+                  className={classes.media}
+                  image={item.image}
+                  title="Teacher"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {item.name}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Add Cart
+                </Button>
+                <Button size="small" color="primary">
+                  View Details
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        )
+      }
+    </Grid>
   );
 }
 
